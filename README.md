@@ -233,7 +233,7 @@ The guiding rules are:
 
 ## Architecture
 
-![Harshify Multi-Cloud Architecture](docs/images/harshify-architecture.png)
+![Harshify Multi-Cloud Architecture](docs/images/harshify-architecture.svg)
 
 Short implementation notes live in [docs/implementation-notes.md](docs/implementation-notes.md).
 
