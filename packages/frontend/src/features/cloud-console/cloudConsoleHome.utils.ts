@@ -20,7 +20,7 @@ export function runtimeClassFor(status: CloudStatus | undefined, loading: boolea
 export function runtimeDetailFor(cloud: CloudProvider, status?: CloudStatus): string {
     if (status?.runtime === 'reachable') return 'Connected through Cloud Proxy API'
     if (status?.runtime === 'unavailable') return 'Start the selected runtime to load resources'
-    if (cloud === 'gcp') return 'Waiting for Floci-GCP runtime status'
+    if (cloud === 'gcp') return 'Waiting for Harshify-GCP runtime status'
     return 'Waiting for runtime status'
 }
 
@@ -52,9 +52,9 @@ export function cloudName(cloud: CloudProvider): string {
 }
 
 export function providerDescription(cloud: CloudProvider): string {
-    if (cloud === 'aws') return 'Storage, runtime infrastructure, and AWS-specific pages are backed by Floci AWS Core.'
-    if (cloud === 'azure') return 'Storage is backed by Floci-AZ through the same normalized storage contract.'
-    return 'Storage is backed by Floci-GCP through the same normalized storage contract.'
+    if (cloud === 'aws') return 'Storage, runtime infrastructure, and AWS-specific pages are backed by Harshify AWS Core.'
+    if (cloud === 'azure') return 'Storage is backed by Harshify-AZ through the same normalized storage contract.'
+    return 'Storage is backed by Harshify-GCP through the same normalized storage contract.'
 }
 
 export function adapterLabel(cloud: CloudProvider, status?: CloudStatus): string {
@@ -63,7 +63,7 @@ export function adapterLabel(cloud: CloudProvider, status?: CloudStatus): string
 }
 
 export function runtimeName(cloud: CloudProvider): string {
-    if (cloud === 'aws') return 'Floci AWS Core'
-    if (cloud === 'azure') return 'Floci-AZ'
-    return 'Floci-GCP'
+    if (cloud === 'aws') return 'Harshify AWS Core'
+    if (cloud === 'azure') return 'Harshify-AZ'
+    return 'Harshify-GCP'
 }

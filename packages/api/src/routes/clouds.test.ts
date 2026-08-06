@@ -151,7 +151,7 @@ describe('cloud schema routes', () => {
     test('returns GCP runtime status without a registered adapter', async () => {
         const app = appWithRoutes(
             [mockAdapter('aws'), mockAdapter('azure')],
-            stubProbes({gcp: unreachable('Cannot reach Floci-GCP at http://localhost:4588')}),
+            stubProbes({gcp: unreachable('Cannot reach Harshify-GCP at http://localhost:4588')}),
         )
         const res = await app.request('/api/clouds/gcp/status')
         const body = await res.json()
@@ -161,7 +161,7 @@ describe('cloud schema routes', () => {
         expect(body.adapterRegistered).toBe(false)
         expect(body.runtime).toBe('unavailable')
         expect(body.endpoint).toBe('http://localhost:4588')
-        expect(body.error).toContain('Cannot reach Floci-GCP')
+        expect(body.error).toContain('Cannot reach Harshify-GCP')
     })
 
     test('cloud status reflects the runtime probe, not one adapter listing', async () => {
@@ -169,7 +169,7 @@ describe('cloud schema routes', () => {
         // no matter what state the runtime was actually in.
         const app = appWithRoutes(
             [mockAdapter('aws')],
-            stubProbes({aws: unreachable('Cannot reach Floci core at http://localhost:4566')}),
+            stubProbes({aws: unreachable('Cannot reach Harshify core at http://localhost:4566')}),
         )
         const body = await (await app.request('/api/clouds/aws/status')).json()
 
@@ -321,7 +321,7 @@ describe('cloud schema routes', () => {
         const app = appWithRoutes([
             mockAdapter('aws', {
                 list: async () => {
-                    throw new RuntimeUnavailableError('Cannot reach Floci-AZ at http://localhost:4577: connection refused')
+                    throw new RuntimeUnavailableError('Cannot reach Harshify-AZ at http://localhost:4577: connection refused')
                 },
             }),
         ])
@@ -460,14 +460,14 @@ describe('service descriptors', () => {
     })
 
     test('an adapter can report coming_soon when its runtime does not implement it', async () => {
-        // floci-az answers 501 for /functions, so a registered adapter must still
+        // harshify-az answers 501 for /functions, so a registered adapter must still
         // be able to tell the truth about the runtime behind it.
         const app = appWithRoutes([
             mockAdapter('azure', {
                 service: 'serverless',
                 descriptorOverride: () => ({
                     availability: 'coming_soon',
-                    reason: 'The Floci-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.',
+                    reason: 'The Harshify-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.',
                 }),
             }),
         ])
@@ -513,7 +513,7 @@ describe('per-service status', () => {
     })
 
     test('distinguishes a runtime that does not implement a service from one that is down', async () => {
-        // This is the whole point of errorCode: floci-az serves blob storage but
+        // This is the whole point of errorCode: harshify-az serves blob storage but
         // answers 501 for functions, and the UI must not call that "offline".
         const app = appWithRoutes([
             mockAdapter('azure', {
@@ -524,7 +524,7 @@ describe('per-service status', () => {
             }),
             mockAdapter('gcp', {
                 list: async () => {
-                    throw new RuntimeUnavailableError('Cannot reach Floci-GCP')
+                    throw new RuntimeUnavailableError('Cannot reach Harshify-GCP')
                 },
             }),
         ])

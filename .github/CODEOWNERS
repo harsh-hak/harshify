@@ -1,4 +1,4 @@
-# CODEOWNERS for floci-ui
+# CODEOWNERS for harshify
 #
 # Scopes release-sensitive paths to the primary maintainer so CI, release
 # config, and container/build changes always trigger a review ping. Add more
@@ -9,12 +9,12 @@
 # Default: no global owner (unowned files fall through to normal review rules).
 
 # CI, release automation, workflow hygiene
-/.github/                @hectorvent
+/.github/                @harsh-hak
 
 # Container build surface
-/docker/                 @hectorvent
-/docker-compose.yml      @hectorvent
+/docker/                 @harsh-hak
+/docker-compose.yml      @harsh-hak
 
 # Workspace / build manifests
-/package.json            @hectorvent
-/pnpm-lock.yaml          @hectorvent
+/package.json            @harsh-hak
+/pnpm-lock.yaml          @harsh-hak

@@ -1,6 +1,6 @@
 {
-  "name": "@floci/frontend",
-  "description": "Floci UI web console — the React + Vite frontend for exploring local multi-cloud runtimes.",
+  "name": "@harshify/frontend",
+  "description": "Harshify web console — the React + Vite frontend for exploring local multi-cloud runtimes.",
   "private": true,
   "version": "0.2.0",
   "type": "module",

@@ -29,7 +29,7 @@ export class AzureRestRuntimeClient implements AzureRuntimeClient {
             })
         } catch (error) {
             throw new RuntimeUnavailableError(
-                `Cannot reach Floci-AZ at ${this.endpoint}: ${errorMessage(error)}`,
+                `Cannot reach Harshify-AZ at ${this.endpoint}: ${errorMessage(error)}`,
                 {cause: error},
             )
         }
@@ -37,7 +37,7 @@ export class AzureRestRuntimeClient implements AzureRuntimeClient {
         if (options.emptyOnNotFound && res.status === 404) return null
         if (!res.ok) {
             const detail = await safeResponseText(res)
-            // A 501 here is the runtime declaring the operation missing (e.g. floci-az
+            // A 501 here is the runtime declaring the operation missing (e.g. harshify-az
             // has no /functions), which must surface as such rather than a bare 502.
             throw httpStatusToCloudError(
                 res.status,
@@ -50,11 +50,11 @@ export class AzureRestRuntimeClient implements AzureRuntimeClient {
 }
 
 export function azureEndpoint(): string {
-    return process.env.FLOCI_AZURE_ENDPOINT ?? process.env.FLOCI_AZ_ENDPOINT ?? 'http://localhost:4577'
+    return process.env.HARSHIFY_AZURE_ENDPOINT ?? process.env.HARSHIFY_AZ_ENDPOINT ?? 'http://localhost:4577'
 }
 
 export function azureAccountName(): string {
-    return process.env.FLOCI_AZURE_ACCOUNT_NAME ?? 'devstoreaccount1'
+    return process.env.HARSHIFY_AZURE_ACCOUNT_NAME ?? 'devstoreaccount1'
 }
 
 export const azure = new AzureRestRuntimeClient()

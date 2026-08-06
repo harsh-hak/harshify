@@ -11,9 +11,9 @@ import type {
 } from '../cloud-spi/types'
 
 /**
- * GKE through the Floci-GCP emulator, which mirrors the public
+ * GKE through the Harshify-GCP emulator, which mirrors the public
  * `container.googleapis.com` v1 REST API and backs each cluster with a real k3s
- * container. Verified against `floci/floci-gcp` 0.5.0:
+ * container. Verified against `harshify/harshify-gcp` 0.5.0:
  *
  *   GET    /container/v1/projects/{project}/locations/{location}/clusters
  *   POST   /container/v1/projects/{project}/locations/{location}/clusters

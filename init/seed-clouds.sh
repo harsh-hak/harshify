@@ -1,11 +1,11 @@
 #!/bin/sh
 set -eu
 
-AZURE_ENDPOINT="${FLOCI_AZURE_ENDPOINT:-http://floci-az:4577}"
-AZURE_ACCOUNT_NAME="${FLOCI_AZURE_ACCOUNT_NAME:-devstoreaccount1}"
-GCP_ENDPOINT="${FLOCI_GCP_ENDPOINT:-http://floci-gcp:4588}"
-GCP_PROJECT="${FLOCI_GCP_PROJECT:-floci-local}"
-FILES_DIR="${FLOCI_SEED_FILES_DIR:-/etc/floci/init/files}"
+AZURE_ENDPOINT="${HARSHIFY_AZURE_ENDPOINT:-http://harshify-az:4577}"
+AZURE_ACCOUNT_NAME="${HARSHIFY_AZURE_ACCOUNT_NAME:-devstoreaccount1}"
+GCP_ENDPOINT="${HARSHIFY_GCP_ENDPOINT:-http://harshify-gcp:4588}"
+GCP_PROJECT="${HARSHIFY_GCP_PROJECT:-harshify-local}"
+FILES_DIR="${HARSHIFY_SEED_FILES_DIR:-/etc/floci/init/files}"
 
 wait_for() {
     name="$1"
@@ -94,8 +94,8 @@ put_gcp_object() {
     fi
 }
 
-wait_for "Floci-AZ" "$AZURE_ENDPOINT/$AZURE_ACCOUNT_NAME?comp=list"
-wait_for "Floci-GCP" "$GCP_ENDPOINT/storage/v1/b?project=$GCP_PROJECT"
+wait_for "Harshify-AZ" "$AZURE_ENDPOINT/$AZURE_ACCOUNT_NAME?comp=list"
+wait_for "Harshify-GCP" "$GCP_ENDPOINT/storage/v1/b?project=$GCP_PROJECT"
 
 echo "=== Creating Azure containers ==="
 create_azure_container azure-app-container

@@ -5,10 +5,10 @@ import {
   type ApiRequestEvent,
 } from "@/telemetry";
 
-export type FlociRequestEvent = ApiRequestEvent;
+export type HarshifyRequestEvent = ApiRequestEvent;
 
 export function subscribeRequests(
-  cb: (event: FlociRequestEvent) => void,
+  cb: (event: HarshifyRequestEvent) => void,
 ): () => void {
   return subscribeApiRequests(cb);
 }

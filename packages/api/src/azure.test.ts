@@ -32,7 +32,7 @@ describe('AzureRestRuntimeClient', () => {
         const client = new AzureRestRuntimeClient('http://localhost:4577', 'devstoreaccount1')
 
         await expect(client.fetch('/container?restype=container', {method: 'PUT'})).rejects.toThrow(
-            'Cannot reach Floci-AZ at http://localhost:4577: connection refused',
+            'Cannot reach Harshify-AZ at http://localhost:4577: connection refused',
         )
     })
 })

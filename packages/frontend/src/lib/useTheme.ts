@@ -3,8 +3,8 @@ import {useEffect, useState} from 'react'
 type Theme = 'dark' | 'light'
 
 function getStored(): Theme {
-    const v = localStorage.getItem('floci-theme')
-    return v === 'light' ? 'light' : 'dark'
+    const v = localStorage.getItem('harshify-theme')
+    return v === 'dark' ? 'dark' : 'light'
 }
 
 export function useTheme() {
@@ -12,7 +12,7 @@ export function useTheme() {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)
-        localStorage.setItem('floci-theme', theme)
+        localStorage.setItem('harshify-theme', theme)
     }, [theme])
 
     const toggle = () => setTheme(t => t === 'dark' ? 'light' : 'dark')

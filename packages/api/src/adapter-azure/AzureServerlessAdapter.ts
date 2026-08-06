@@ -41,7 +41,7 @@ export class AzureServerlessAdapter implements CloudServiceAdapter {
     constructor(private readonly client: AzureRuntimeClient = azure) { }
 
     /**
-     * floci-az answers 501 NotImplemented on /functions, so this adapter cannot
+     * harshify-az answers 501 NotImplemented on /functions, so this adapter cannot
      * currently serve a request even though it is registered. Reporting
      * coming_soon keeps the nav honest; remove this once the runtime ships the
      * endpoint and the adapter's own tests exercise it against a real response.
@@ -49,7 +49,7 @@ export class AzureServerlessAdapter implements CloudServiceAdapter {
     descriptorOverride(): CloudServiceDescriptorOverride {
         return {
             availability: 'coming_soon',
-            reason: 'The Floci-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.',
+            reason: 'The Harshify-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.',
         }
     }
 

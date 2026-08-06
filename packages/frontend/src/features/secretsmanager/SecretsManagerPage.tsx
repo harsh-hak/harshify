@@ -471,7 +471,7 @@ export function SecretsManagerPage() {
             <h3>Secrets</h3>
           </div>
           {query.isError ? (
-            <EmptyState icon={KeyRound} title="Cannot load secrets" description="Secrets Manager did not respond from the Floci endpoint." />
+            <EmptyState icon={KeyRound} title="Cannot load secrets" description="Secrets Manager did not respond from the Harshify endpoint." />
           ) : query.isLoading ? (
             <div className="empty"><p>Loading secrets…</p></div>
           ) : secrets.length === 0 ? (

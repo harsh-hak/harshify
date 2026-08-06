@@ -19,12 +19,12 @@ import {
 
 describe('CloudError wire shape', () => {
     test('keeps the generic label in message and the raw text in detail', () => {
-        const body = new RuntimeUnavailableError('Cannot reach Floci-AZ at http://localhost:4577').toBody()
+        const body = new RuntimeUnavailableError('Cannot reach Harshify-AZ at http://localhost:4577').toBody()
 
         expect(body.code).toBe('runtime_unavailable')
         expect(body.message).toBe('Runtime unavailable')
         expect(body.error).toBe(body.message)
-        expect(body.detail).toBe('Cannot reach Floci-AZ at http://localhost:4577')
+        expect(body.detail).toBe('Cannot reach Harshify-AZ at http://localhost:4577')
     })
 
     test('omits detail when it would duplicate the message', () => {

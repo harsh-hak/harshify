@@ -1,26 +1,26 @@
 <p align="center">
-  <img src="docs/images/floci-black.svg#gh-light-mode-only" alt="Floci UI" width="460" />
-  <img src="docs/images/floci-white.svg#gh-dark-mode-only" alt="Floci UI" width="460" />
+  <img src="docs/images/harshify-black.svg#gh-light-mode-only" alt="Harshify" width="460" />
+  <img src="docs/images/harshify-white.svg#gh-dark-mode-only" alt="Harshify" width="460" />
 </p>
 
 <p align="center">
   <strong>Any Cloud. Locally.</strong><br />
-  A local-first, cloud-aware runtime console for Floci and compatible local cloud emulators.
+  A local-first, cloud-aware runtime console for the Floci local cloud emulator and compatible local runtimes.
 </p>
 
 <p align="center">
-  <a href="https://github.com/floci-io/floci-ui/releases/latest"><img src="https://img.shields.io/github/v/release/floci-io/floci-ui?label=latest%20release&color=blue" alt="Latest Release"></a>
-  <a href="https://github.com/floci-io/floci-ui/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/floci-io/floci-ui/ci.yml?branch=main&label=ci" alt="CI Status"></a>
-  <a href="https://hub.docker.com/r/floci/floci-ui"><img src="https://img.shields.io/docker/pulls/floci/floci-ui?label=docker%20pulls" alt="Docker Pulls"></a>
-  <a href="https://hub.docker.com/r/floci/floci-ui"><img src="https://img.shields.io/docker/image-size/floci/floci-ui/latest?label=image%20size" alt="Docker Image Size"></a>
+  <a href="https://github.com/harsh-hak/harshify/releases/latest"><img src="https://img.shields.io/github/v/release/harsh-hak/harshify?label=latest%20release&color=blue" alt="Latest Release"></a>
+  <a href="https://github.com/harsh-hak/harshify/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/harsh-hak/harshify/ci.yml?branch=main&label=ci" alt="CI Status"></a>
+  <a href="https://hub.docker.com/r/harshify/harshify-ui"><img src="https://img.shields.io/docker/pulls/harshify/harshify-ui?label=docker%20pulls" alt="Docker Pulls"></a>
+  <a href="https://hub.docker.com/r/harshify/harshify-ui"><img src="https://img.shields.io/docker/image-size/harshify/harshify-ui/latest?label=image%20size" alt="Docker Image Size"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT"></a>
 </p>
 
 <p align="center">
-  <img src="docs/images/floci-ui-console.png" alt="Floci UI console" width="900" />
+  <img src="docs/images/harshify-console.png" alt="Harshify console" width="900" />
 </p>
 
-Floci UI is the web console for the Floci ecosystem. The current app is centered on a unified `Cloud Explorer` and a cloud-aware `Console Home`. It renders only real data returned by local runtimes and explicit placeholders for work that is not wired yet.
+Harshify (formerly Floci UI) is the web console for the Floci ecosystem. The current app is centered on a unified `Cloud Explorer` and a cloud-aware `Console Home`. It renders only real data returned by local runtimes and explicit placeholders for work that is not wired yet.
 
 No fake resources, no demo rows, and no mock operational data are shown in normal mode.
 
@@ -64,19 +64,19 @@ Console Home is available for all three clouds.
 
 Runtime gaps — an adapter exists but the local runtime does not implement it:
 
-- Azure Serverless: the Floci-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.
+- Azure Serverless: the Harshify-AZ runtime returns 501 NotImplemented for the Azure Functions endpoint.
 
 Services marked `No` render as a disabled sidebar row whose tooltip carries the
 server-supplied reason. Adding one is a catalog row in
 `packages/api/src/cloud-spi/serviceCatalog.ts` plus an adapter — no frontend change.
 
 <p align="center">
-  <img src="docs/images/floci-ui-console-azure.png" alt="Azure console home, showing services grouped by category with per-cloud naming and coming-soon reasons" width="900" />
+  <img src="docs/images/harshify-console-azure.png" alt="Azure console home, showing services grouped by category with per-cloud naming and coming-soon reasons" width="900" />
 </p>
 
 Azure on the same build: the nav is grouped by category, `k8s Engine` is labelled
 `AKS` for this provider, and every unavailable service carries a reason — Serverless
-reads `coming soon` because the Floci-AZ runtime answers 501 for Azure Functions,
+reads `coming soon` because the Harshify-AZ runtime answers 501 for Azure Functions,
 even though an adapter is registered.
 
 ## Current Capability Snapshot
@@ -192,7 +192,7 @@ AWS and GCP, both through the unified shell.
 
 Current gaps:
 
-- Azure Functions is registered but the Floci-AZ runtime answers 501 NotImplemented,
+- Azure Functions is registered but the Harshify-AZ runtime answers 501 NotImplemented,
   so it reports `coming_soon` with that reason rather than appearing available.
 - GCP Cloud Functions invoke is not wired yet; the capability is advertised as
   `coming_soon` instead of being silently missing.
@@ -221,7 +221,7 @@ Current gaps:
 
 ## Product Direction
 
-Floci UI is evolving toward a metadata-driven, cloud-aware console where one web app can render multiple local runtimes through the same shell.
+Harshify is evolving toward a metadata-driven, cloud-aware console where one web app can render multiple local runtimes through the same shell.
 
 The guiding rules are:
 
@@ -233,7 +233,7 @@ The guiding rules are:
 
 ## Architecture
 
-![Floci Unified UI Multi-Cloud Architecture](docs/images/floci-unified-ui-architecture.png)
+![Harshify Multi-Cloud Architecture](docs/images/harshify-architecture.png)
 
 Short implementation notes live in [docs/implementation-notes.md](docs/implementation-notes.md).
 
@@ -275,9 +275,9 @@ Browser
 
 Default compose stack:
 
-- `floci-ui` on `http://localhost:4500`
-- `floci-api` on `http://localhost:4501`
-- `floci` on `http://localhost:4566`
+- `harshify-ui` on `http://localhost:4500`
+- `harshify-api` on `http://localhost:4501`
+- `harshify` on `http://localhost:4566`
 
 Start AWS-only:
 
@@ -307,7 +307,7 @@ Prerequisites:
 - Node.js 20+
 - pnpm 9+
 - Bun
-- A running local runtime: Floci core, and optionally Floci-AZ / Floci-GCP
+- A running local runtime: Harshify core, and optionally Harshify-AZ / Harshify-GCP
 
 Install dependencies:
 
@@ -323,29 +323,29 @@ cp .env.example packages/api/.env
 
 Important: the API runs from `packages/api` and loads environment variables from `packages/api/.env`.
 
-Start Floci AWS Core with Docker:
+Start Harshify AWS Core with Docker:
 
 ```bash
-docker run -d --name floci \
+docker run -d --name harshify \
   -p 4566:4566 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e FLOCI_DEFAULT_REGION=us-east-1 \
   -u root \
-  floci/floci:latest
+  harshify/harshify:latest-compat
 ```
 
 Or from a local clone:
 
 ```bash
-git clone https://github.com/floci-io/floci.git ../floci
-cd ../floci
+git clone https://github.com/harshify-io/harshify.git ../harshify
+cd ../harshify
 ./mvnw clean quarkus:dev
 ```
 
 Optional local runtimes:
 
-- Floci-AZ on `http://localhost:4577`
-- Floci-GCP on `http://localhost:4588`
+- Harshify-AZ on `http://localhost:4577`
+- Harshify-GCP on `http://localhost:4588`
 
 Start the UI stack:
 
@@ -370,11 +370,11 @@ pnpm dev:web
 Default API environment values:
 
 ```bash
-FLOCI_ENDPOINT=http://localhost:4566
-FLOCI_AZURE_ENDPOINT=http://localhost:4577
-FLOCI_AZURE_ACCOUNT_NAME=devstoreaccount1
-FLOCI_GCP_ENDPOINT=http://localhost:4588
-FLOCI_GCP_PROJECT=floci-local
+HARSHIFY_ENDPOINT=http://localhost:4566
+HARSHIFY_AZURE_ENDPOINT=http://localhost:4577
+HARSHIFY_AZURE_ACCOUNT_NAME=devstoreaccount1
+HARSHIFY_GCP_ENDPOINT=http://localhost:4588
+HARSHIFY_GCP_PROJECT=harshify-local
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=test
 AWS_SECRET_ACCESS_KEY=test

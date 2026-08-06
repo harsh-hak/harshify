@@ -18,7 +18,7 @@ function azureFunction(name: string) {
         properties: {
             state: 'Running',
             runtime: 'node',
-            functionAppName: 'floci-functions',
+            functionAppName: 'harshify-functions',
             lastModifiedTimeUtc: '2026-06-22T05:29:13Z',
             scriptHref: `http://localhost:4577/functions/${name}/script`,
             invokeUrlTemplate: `http://localhost:4577/functions/${name}/invoke`,
@@ -81,7 +81,7 @@ describe('AzureServerlessAdapter', () => {
                     kind: 'functionapp',
                     resourceType: 'Microsoft.Web/sites/functions',
                     runtime: 'node',
-                    functionAppName: 'floci-functions',
+                    functionAppName: 'harshify-functions',
                     lastModified: '2026-06-22T05:29:13Z',
                     triggerType: 'httpTrigger',
                     scriptHref: 'http://localhost:4577/functions/hello/script',
@@ -193,7 +193,7 @@ describe('AzureServerlessAdapter', () => {
                 handler: 'index.handler',
                 code: 'module.exports.handler = async () => ({statusCode: 200})',
                 location: 'centralus',
-                functionAppName: 'floci-functions',
+                functionAppName: 'harshify-functions',
             },
         })
 
@@ -210,7 +210,7 @@ describe('AzureServerlessAdapter', () => {
             handler: 'index.handler',
             code: 'module.exports.handler = async () => ({statusCode: 200})',
             location: 'centralus',
-            functionAppName: 'floci-functions',
+            functionAppName: 'harshify-functions',
         })
         expect(resource.id).toBe('hello')
     })

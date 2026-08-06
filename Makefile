@@ -13,10 +13,10 @@ logs:
 	docker compose logs -f
 
 build:
-	docker build -f docker/Dockerfile -t floci/floci-ui:latest .
+	docker build -f docker/Dockerfile -t harshify/harshify-ui:latest .
 
 push: build
-	docker push floci/floci-ui:latest
+	docker push harshify/harshify-ui:latest
 
 install:
 	cd packages/frontend && npm install

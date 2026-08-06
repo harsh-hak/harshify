@@ -1,6 +1,6 @@
 # Implementation Notes
 
-This document tracks the current architectural direction behind the new Floci UI shell.
+This document tracks the current architectural direction behind the new Harshify shell.
 
 ## What Changed
 

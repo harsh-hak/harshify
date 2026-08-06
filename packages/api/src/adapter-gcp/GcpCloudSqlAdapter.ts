@@ -11,8 +11,8 @@ import type {
 } from '../cloud-spi/types'
 
 /**
- * Cloud SQL through the Floci-GCP emulator, which mirrors the public
- * `sqladmin` v1beta4 REST API. Verified against `floci/floci-gcp` 0.5.0:
+ * Cloud SQL through the Harshify-GCP emulator, which mirrors the public
+ * `sqladmin` v1beta4 REST API. Verified against `harshify/harshify-gcp` 0.5.0:
  *
  *   GET    /sql/v1beta4/projects/{project}/instances
  *   POST   /sql/v1beta4/projects/{project}/instances

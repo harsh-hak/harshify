@@ -1,16 +1,16 @@
 import {useSyncExternalStore} from 'react'
 
-// Floci isolates resources per AWS account, and selects the account from the
+// Harshify isolates resources per AWS account, and selects the account from the
 // 12-digit access key it is given (see the API's aws.ts). The console mirrors
 // that: a single active account at a time, sent on every request via the
-// `x-floci-account-id` header. This is a context switch, not a filter — accounts
-// do not overlap in Floci.
+// `x-harshify-account-id` header. This is a context switch, not a filter — accounts
+// do not overlap in Harshify.
 
 export const DEFAULT_ACCOUNT_ID = '000000000000'
 /** Request header the API reads to scope a request to an account. */
-export const ACCOUNT_HEADER = 'x-floci-account-id'
-const ACCOUNT_KEY = 'floci.accountId'
-const RECENTS_KEY = 'floci.accountId.recents'
+export const ACCOUNT_HEADER = 'x-harshify-account-id'
+const ACCOUNT_KEY = 'harshify.accountId'
+const RECENTS_KEY = 'harshify.accountId.recents'
 const MAX_RECENTS = 8
 
 export function isAccountId(value: string | null | undefined): value is string {

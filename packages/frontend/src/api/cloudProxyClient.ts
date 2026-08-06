@@ -13,6 +13,20 @@ import { getAccountId } from "@/lib/accountStore";
 
 type CloudPathParams = Record<string, string>;
 
+export interface LanNetworkInfo {
+  addresses: string[];
+}
+
+export async function getLanAddresses(
+  signal?: AbortSignal,
+): Promise<string[]> {
+  const res = await apiClient.call<LanNetworkInfo>(
+    apiEndpointKeys.system.network,
+    { signal },
+  );
+  return res.data.addresses;
+}
+
 export async function listClouds(
   signal?: AbortSignal,
 ): Promise<CloudDescriptor[]> {

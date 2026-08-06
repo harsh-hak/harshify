@@ -255,7 +255,7 @@ function DatabaseLifecycleSection({ status }: { status?: string | null }) {
       </div>
       <p className="muted compact-text">
         Current status: {status ?? "unknown"}. Start and stop are not supported
-        by the local Floci RDS runtime.
+        by the local Harshify RDS runtime.
       </p>
     </section>
   );

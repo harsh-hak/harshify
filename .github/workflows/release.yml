@@ -6,7 +6,7 @@ name: Release
 # Nothing is compiled inside the Dockerfile — see docker/Dockerfile.package.
 #
 # Published tags:
-#   floci/floci-ui:1.2.3   floci/floci-ui:latest
+#   harshify/harshify-ui:1.2.3   harshify/harshify-ui:latest
 #
 # Required secrets: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN
 
@@ -58,7 +58,7 @@ jobs:
       - name: Build frontend
         run: |
           pnpm install --frozen-lockfile
-          pnpm --filter @floci/frontend build
+          pnpm --filter @harshify/frontend build
           rm -rf public
           mv packages/frontend/dist public
 
@@ -96,8 +96,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            floci/floci-ui:${{ steps.version.outputs.version }}
-            floci/floci-ui:latest
+            harshify/harshify-ui:${{ steps.version.outputs.version }}
+            harshify/harshify-ui:latest
           labels: |
             org.opencontainers.image.version=${{ steps.version.outputs.version }}
             org.opencontainers.image.revision=${{ github.sha }}

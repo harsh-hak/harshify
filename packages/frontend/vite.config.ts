@@ -25,7 +25,7 @@ export default defineConfig({
   server: {
     port: 4500,
     host: "0.0.0.0",
-    allowedHosts: ["localhost", "127.0.0.1", "floci-ui"],
+    allowedHosts: ["localhost", "127.0.0.1", "harshify-ui"],
     watch: {
       usePolling,
     },

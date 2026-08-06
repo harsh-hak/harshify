@@ -102,13 +102,13 @@ export interface CWMetric {
     dimensions: Array<{ name: string; value: string }>
 }
 
-export class FlociError extends Error {
+export class HarshifyError extends Error {
     constructor(
         message: string,
         public readonly statusCode?: number,
         public readonly endpoint?: string
     ) {
         super(message)
-        this.name = 'FlociError'
+        this.name = 'HarshifyError'
     }
 }

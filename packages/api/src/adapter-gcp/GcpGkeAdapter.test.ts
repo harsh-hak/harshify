@@ -5,14 +5,14 @@ import {NotFoundError, ValidationError} from '../cloud-spi/errors'
 
 const originalFetch = globalThis.fetch
 const ENDPOINT = 'http://localhost:4588'
-const CLUSTERS_PATH = '/container/v1/projects/floci-local/locations/us-central1/clusters'
+const CLUSTERS_PATH = '/container/v1/projects/harshify-local/locations/us-central1/clusters'
 
 afterEach(() => {
     globalThis.fetch = originalFetch
 })
 
 function adapter(): GcpGkeAdapter {
-    return new GcpGkeAdapter(new GcpRestRuntimeClient(ENDPOINT, 'floci-local', 'us-central1'))
+    return new GcpGkeAdapter(new GcpRestRuntimeClient(ENDPOINT, 'harshify-local', 'us-central1'))
 }
 
 function stubFetch(handler: (url: string, init?: RequestInit) => Response) {
@@ -24,7 +24,7 @@ function stubFetch(handler: (url: string, init?: RequestInit) => Response) {
     return calls
 }
 
-/** Shape captured from floci-gcp 0.5.0. */
+/** Shape captured from harshify-gcp 0.5.0. */
 function gkeCluster(name: string) {
     return {
         name,
@@ -50,7 +50,7 @@ function gkeOperation(clusterName: string) {
         status: 'DONE',
         zone: 'us-central1',
         location: 'us-central1',
-        targetLink: `projects/floci-local/locations/us-central1/clusters/${clusterName}`,
+        targetLink: `projects/harshify-local/locations/us-central1/clusters/${clusterName}`,
     }
 }
 
@@ -93,7 +93,7 @@ describe('GcpGkeAdapter', () => {
 
     test('reduces a fully qualified cluster path to its name', async () => {
         stubFetch(() => new Response(JSON.stringify({
-            clusters: [{...gkeCluster('prod'), name: 'projects/floci-local/locations/us-central1/clusters/prod'}],
+            clusters: [{...gkeCluster('prod'), name: 'projects/harshify-local/locations/us-central1/clusters/prod'}],
         }), {status: 200}))
 
         const [resource] = await adapter().list()

@@ -5,14 +5,14 @@ import {NotFoundError, ValidationError} from '../cloud-spi/errors'
 
 const originalFetch = globalThis.fetch
 const ENDPOINT = 'http://localhost:4588'
-const INSTANCES_PATH = '/sql/v1beta4/projects/floci-local/instances'
+const INSTANCES_PATH = '/sql/v1beta4/projects/harshify-local/instances'
 
 afterEach(() => {
     globalThis.fetch = originalFetch
 })
 
 function adapter(): GcpCloudSqlAdapter {
-    return new GcpCloudSqlAdapter(new GcpRestRuntimeClient(ENDPOINT, 'floci-local', 'us-central1'))
+    return new GcpCloudSqlAdapter(new GcpRestRuntimeClient(ENDPOINT, 'harshify-local', 'us-central1'))
 }
 
 function stubFetch(handler: (url: string, init?: RequestInit) => Response) {
@@ -24,19 +24,19 @@ function stubFetch(handler: (url: string, init?: RequestInit) => Response) {
     return calls
 }
 
-/** Create answers with this receipt, not the instance. Captured from floci-gcp 0.5.0. */
+/** Create answers with this receipt, not the instance. Captured from harshify-gcp 0.5.0. */
 function sqlOperation(targetId: string) {
     return {
         kind: 'sql#operation',
         name: 'b4e23845-3325-48e4-95a3-d558f44540e8',
         targetId,
-        targetProject: 'floci-local',
+        targetProject: 'harshify-local',
         status: 'DONE',
         operationType: 'CREATE',
     }
 }
 
-/** Shape captured from floci-gcp 0.5.0. */
+/** Shape captured from harshify-gcp 0.5.0. */
 function sqlInstance(name: string) {
     return {
         name,
@@ -44,12 +44,12 @@ function sqlInstance(name: string) {
         region: 'us-central1',
         settings: {tier: 'db-f1-micro'},
         kind: 'sql#instance',
-        project: 'floci-local',
+        project: 'harshify-local',
         backendType: 'SECOND_GEN',
         instanceType: 'CLOUD_SQL_INSTANCE',
         state: 'RUNNABLE',
         gceZone: 'us-central1-a',
-        connectionName: `floci-local:us-central1:${name}`,
+        connectionName: `harshify-local:us-central1:${name}`,
         ipAddresses: [{type: 'PRIMARY', ipAddress: '172.20.0.5', port: 5432}],
     }
 }
@@ -83,7 +83,7 @@ describe('GcpCloudSqlAdapter', () => {
             instanceClass: 'db-f1-micro',
         })
         // The schema surfaces the connection endpoint through a metadata path.
-        expect(resource?.metadata.connectionName).toBe('floci-local:us-central1:orders-db')
+        expect(resource?.metadata.connectionName).toBe('harshify-local:us-central1:orders-db')
         expect(resource?.metadata.ipAddress).toBe('172.20.0.5')
         expect(resource?.metadata.port).toBe(5432)
     })

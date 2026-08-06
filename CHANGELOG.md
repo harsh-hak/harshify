@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Rebranded Floci UI to Harshify** — new Harshify logo (light/dark), package names
+  (@harshify/frontend, @harshify/api), environment variables (HARSHIFY_*), Docker
+  Compose service names, and release image harshify/harshify-ui.
 - Service availability is derived from one catalog plus the adapter registry and served to
   the frontend. Registering an adapter is now the only step needed for a service to appear;
   the sidebar, Console Home, and Cloud Explorer no longer hardcode it.
@@ -96,6 +99,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `docker-compose.dev.yml` (folded into `docker-compose.yml`).
 
-[Unreleased]: https://github.com/floci-io/floci-ui/compare/0.2.0...HEAD
-[0.2.0]: https://github.com/floci-io/floci-ui/compare/0.1.0...0.2.0
-[0.1.0]: https://github.com/floci-io/floci-ui/releases/tag/0.1.0
+[Unreleased]: https://github.com/harsh-hak/harshify/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/harsh-hak/harshify/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/harsh-hak/harshify/releases/tag/0.1.0

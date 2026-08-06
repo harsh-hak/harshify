@@ -20,9 +20,9 @@ assignees: ''
 
 ## Backing API
 
-<!-- Which Floci-compatible endpoint(s) would power this? The UI renders only real
+<!-- Which Harshify-compatible endpoint(s) would power this? The UI renders only real
      data, so a feature needs a runtime that can serve it. Link the relevant
-     Floci / cloud API reference if you have it. -->
+     Floci (runtime) / cloud API reference if you have it. -->
 
 ## Are you willing to contribute a PR?
 

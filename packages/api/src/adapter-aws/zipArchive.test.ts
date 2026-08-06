@@ -47,7 +47,7 @@ describe('createZipArchive', () => {
             {name: 'lib/util.js', content: 'module.exports = {}'},
         ])
 
-        const path = `${tmpdir()}/floci-zip-${process.pid}.zip`
+        const path = `${tmpdir()}/harshify-zip-${process.pid}.zip`
         await writeFile(path, archive)
         try {
             const listing = await new Promise<string>((resolve, reject) => {

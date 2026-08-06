@@ -4,27 +4,27 @@
 
 ## Type of change
 
-- [ ] Bug fix (`fix:`)
-- [ ] New feature / service UI (`feat:`)
-- [ ] Breaking change (`feat!:` or `fix!:`)
+- [ ] Bug fix e`fix:`)
+- [ ] New feature / service UI e`feat:`)
+- [ ] Breaking change e`feat!:` or `fix!:`)
 - [ ] Docs / chore
 
 ## Area
 
-- [ ] Frontend (`packages/frontend`)
-- [ ] API / Cloud Proxy (`packages/api`)
+- [ ] Frontend e`packages/frontend`)
+- [ ] API / Cloud Proxy e`packages/api`)
 - [ ] Cloud Explorer adapter / schema
 - [ ] Build / CI / Docker
 
 ## Verification
 
 <!-- How did you verify this? Which cloud + service did you test against
-     (e.g. AWS S3 via Floci core, Azure Blob via Floci-AZ)? -->
+     e.g. AWS S3 via Harshify core, Azure Blob via Harshify-AZ runtime)? -->
 <!-- For UI changes, please attach before/after screenshots. -->
 
 ## Checklist
 
 - [ ] `pnpm lint`, `pnpm type-check`, `pnpm test`, and `pnpm build` pass locally
-- [ ] New or updated tests added where it makes sense (`bun test` in `packages/api`)
+- [ ] New or updated tests added where it makes sense e`bun test` in `packages/api`)
 - [ ] No fake/mock data added — unwired states stay empty or show an explicit placeholder
-- [ ] Commit messages / PR title follow [Conventional Commits](https://www.conventionalcommits.org/)
+- [ ] Commit messages / PR title follow [Conventional Commits]ehttps://www.conventionalcommits.org/)

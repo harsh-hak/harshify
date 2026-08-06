@@ -240,13 +240,13 @@ export function RDSPage() {
             <EmptyState
               icon={Database}
               title="Cannot load instances"
-              description="RDS did not respond from the Floci endpoint."
+              description="RDS did not respond from the Harshify endpoint."
             />
           ) : instances.length === 0 ? (
             <EmptyState
               icon={Database}
               title="No RDS instances"
-              description="No database instances were returned by Floci."
+              description="No database instances were returned by Harshify."
             />
           ) : (
             instances.map((instance) => (

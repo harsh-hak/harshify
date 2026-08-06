@@ -37,7 +37,7 @@ curl http://localhost:4501/api/clouds/aws/status
 
 ## Environment
 
-- Floci UI version / image tag:
+- Harshify UI version / image tag:
 - How you're running it (`docker compose` / `pnpm dev` + `pnpm dev:api`):
-- Floci core version / image tag:
+- Floci core (runtime) version / image tag:
 - Browser:

@@ -4,30 +4,30 @@ import {GcpRestRuntimeClient} from '../gcp'
 
 const originalFetch = globalThis.fetch
 const ENDPOINT = 'http://localhost:4588'
-const FUNCTIONS_PATH = '/v2/projects/floci-local/locations/us-central1/functions'
+const FUNCTIONS_PATH = '/v2/projects/harshify-local/locations/us-central1/functions'
 
 afterEach(() => {
     globalThis.fetch = originalFetch
 })
 
 function adapter(): GcpCloudFunctionsAdapter {
-    return new GcpCloudFunctionsAdapter(new GcpRestRuntimeClient(ENDPOINT, 'floci-local', 'us-central1'))
+    return new GcpCloudFunctionsAdapter(new GcpRestRuntimeClient(ENDPOINT, 'harshify-local', 'us-central1'))
 }
 
 function gen2Function(name: string) {
     return {
-        name: `projects/floci-local/locations/us-central1/functions/${name}`,
+        name: `projects/harshify-local/locations/us-central1/functions/${name}`,
         buildConfig: {runtime: 'nodejs20', entryPoint: 'helloWorld'},
         serviceConfig: {
-            uri: `https://us-central1-floci-local.cloudfunctions.net/${name}`,
+            uri: `https://us-central1-harshify-local.cloudfunctions.net/${name}`,
             availableMemory: '256M',
-            service: `projects/floci-local/locations/us-central1/services/${name}`,
-            revision: `projects/floci-local/locations/us-central1/functions/${name}/revisions/${name}-00001`,
+            service: `projects/harshify-local/locations/us-central1/services/${name}`,
+            revision: `projects/harshify-local/locations/us-central1/functions/${name}/revisions/${name}-00001`,
             allTrafficOnLatestRevision: true,
         },
         state: 'ACTIVE',
         environment: 'GEN_2',
-        url: `https://us-central1-floci-local.cloudfunctions.net/${name}`,
+        url: `https://us-central1-harshify-local.cloudfunctions.net/${name}`,
         createTime: '2026-06-22T05:29:13Z',
         updateTime: '2026-06-22T05:29:13Z',
     }
@@ -53,15 +53,15 @@ describe('GcpCloudFunctionsAdapter', () => {
                 metadata: {
                     provider: 'gcp',
                     serverlessService: 'cloud-functions',
-                    resourceName: 'projects/floci-local/locations/us-central1/functions/hello',
+                    resourceName: 'projects/harshify-local/locations/us-central1/functions/hello',
                     environment: 'GEN_2',
                     runtime: 'nodejs20',
                     entryPoint: 'helloWorld',
                     availableMemory: '256M',
                     timeoutSeconds: undefined,
-                    uri: 'https://us-central1-floci-local.cloudfunctions.net/hello',
-                    service: 'projects/floci-local/locations/us-central1/services/hello',
-                    revision: 'projects/floci-local/locations/us-central1/functions/hello/revisions/hello-00001',
+                    uri: 'https://us-central1-harshify-local.cloudfunctions.net/hello',
+                    service: 'projects/harshify-local/locations/us-central1/services/hello',
+                    revision: 'projects/harshify-local/locations/us-central1/functions/hello/revisions/hello-00001',
                     allTrafficOnLatestRevision: true,
                     updateTime: '2026-06-22T05:29:13Z',
                     // Shared key so one serverless column works across all clouds.

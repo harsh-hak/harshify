@@ -1,5 +1,5 @@
 services:
-  floci-ui:
+  harshify-ui:
     build:
       context: ./packages/frontend
       dockerfile: Dockerfile.dev
@@ -12,14 +12,14 @@ services:
     ports:
       - "4500:4500"
     environment:
-      API_TARGET: http://floci-api:4501
+      API_TARGET: http://harshify-api:4501
       VITE_USE_POLLING: "true"
     depends_on:
-      - floci-api
+      - harshify-api
     networks:
-      - floci_default
+      - harshify_default
 
-  floci-api:
+  harshify-api:
     build:
       context: ./packages/api
       dockerfile: Dockerfile.dev
@@ -28,21 +28,25 @@ services:
     ports:
       - "4501:4501"
     environment:
-      FLOCI_ENDPOINT: http://floci:4566
-      FLOCI_AZURE_ENDPOINT: http://floci-az:4577
+      HARSHIFY_ENDPOINT: http://harshify:4566
+      HARSHIFY_AZURE_ENDPOINT: http://harshify-az:4577
       AWS_REGION: us-east-1
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
-      FLOCI_GCP_ENDPOINT: http://floci-gcp:4588
-      FLOCI_GCP_PROJECT: floci-local
+      HARSHIFY_GCP_ENDPOINT: http://harshify-gcp:4588
+      HARSHIFY_GCP_PROJECT: harshify-local
+      # LAN IP(s) the "Go Live" button advertises. Inside a container the API
+      # can only see bridge addresses, so set this to the host's LAN IP when
+      # running via Docker, e.g. in .env: HARSHIFY_LAN_ADDRESSES=192.168.1.50
+      HARSHIFY_LAN_ADDRESSES: ${HARSHIFY_LAN_ADDRESSES:-}
       PORT: "4501"
     depends_on:
-      - floci
+      - harshify
     networks:
-      - floci_default
+      - harshify_default
 
-  floci:
-    image: floci/floci:latest-compat
+  harshify:
+    image: harshify/harshify:latest-compat
     ports:
       - "4566:4566"
     volumes:
@@ -52,45 +56,45 @@ services:
     environment:
       FLOCI_STORAGE_MODE: persistent
     networks:
-      floci_default:
+      harshify_default:
         aliases:
           - localhost.floci.io
 
   # Multi-cloud emulators — enabled with the "multicloud" profile:
   #   docker compose --profile multicloud up
-  floci-az:
-    image: floci/floci-az
+  harshify-az:
+    image: harshify/harshify-az
     profiles: ["multicloud"]
     ports:
       - "4577:4577"
     networks:
-      - floci_default
+      - harshify_default
 
-  floci-gcp:
-    image: floci/floci-gcp
+  harshify-gcp:
+    image: harshify/harshify-gcp
     profiles: ["multicloud"]
     ports:
       - "4588:4588"
     networks:
-      - floci_default
+      - harshify_default
 
-  floci-seed:
-    image: floci/floci-gcp
+  harshify-seed:
+    image: harshify/harshify-gcp
     profiles: ["multicloud"]
     command: ["/bin/sh", "/etc/floci/init/seed-clouds.sh"]
     volumes:
       - ./init:/etc/floci/init:ro
     environment:
-      FLOCI_AZURE_ENDPOINT: http://floci-az:4577
-      FLOCI_AZURE_ACCOUNT_NAME: devstoreaccount1
-      FLOCI_GCP_ENDPOINT: http://floci-gcp:4588
-      FLOCI_GCP_PROJECT: floci-local
+      HARSHIFY_AZURE_ENDPOINT: http://harshify-az:4577
+      HARSHIFY_AZURE_ACCOUNT_NAME: devstoreaccount1
+      HARSHIFY_GCP_ENDPOINT: http://harshify-gcp:4588
+      HARSHIFY_GCP_PROJECT: harshify-local
     depends_on:
-      - floci-az
-      - floci-gcp
+      - harshify-az
+      - harshify-gcp
     networks:
-      - floci_default
+      - harshify_default
 
 networks:
-  floci_default:
-    name: floci_default
+  harshify_default:
+    name: harshify_default

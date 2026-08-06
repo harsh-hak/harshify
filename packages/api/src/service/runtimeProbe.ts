@@ -15,8 +15,8 @@ export type RuntimeProbe = () => Promise<void>
 
 export const runtimeProbes: Record<CloudProvider, RuntimeProbe> = {
     // Every runtime exposes a health endpoint, but under its own path: core and
-    // Floci-AZ use /_floci/health, Floci-GCP uses /_floci-gcp/health.
-    aws: () => probeHttp(`${awsEndpoint()}/_floci/health`, 'Floci core'),
+    // Harshify-AZ use /_floci/health, Harshify-GCP uses /_floci-gcp/health.
+    aws: () => probeHttp(`${awsEndpoint()}/_floci/health`, 'Harshify core'),
     azure: async () => {
         await azure.fetch('/_floci/health', {method: 'GET'})
     },
@@ -31,7 +31,7 @@ export function endpointFor(cloud: CloudProvider): string | null {
 }
 
 export function awsEndpoint(): string {
-    return process.env.FLOCI_ENDPOINT ?? 'http://localhost:4566'
+    return process.env.HARSHIFY_ENDPOINT ?? 'http://localhost:4566'
 }
 
 async function probeHttp(endpoint: string, label: string): Promise<void> {

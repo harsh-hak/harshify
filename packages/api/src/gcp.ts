@@ -1,6 +1,6 @@
 import {RuntimeUnavailableError, httpStatusToCloudError} from './cloud-spi/errors'
 
-/** Floci-GCP's health endpoint; deliberately not the `/_floci/health` core uses. */
+/** Harshify-GCP's health endpoint; deliberately not the `/_floci/health` core uses. */
 const GCP_HEALTH_PATH = '/_floci-gcp/health'
 
 export interface GcpRuntimeFetchOptions {
@@ -8,7 +8,7 @@ export interface GcpRuntimeFetchOptions {
 }
 
 /**
- * Transport seam for the Floci-GCP runtime, mirroring `AzureRuntimeClient`.
+ * Transport seam for the Harshify-GCP runtime, mirroring `AzureRuntimeClient`.
  *
  * Both GCP adapters previously carried their own copy of this and threw away the
  * response body, so a failure surfaced as a bare "HTTP 500" with no explanation.
@@ -40,7 +40,7 @@ export class GcpRestRuntimeClient implements GcpRuntimeClient {
             res = await globalThis.fetch(`${this.endpoint}${path}`, init)
         } catch (error) {
             throw new RuntimeUnavailableError(
-                `Cannot reach Floci-GCP at ${this.endpoint}: ${errorMessage(error)}`,
+                `Cannot reach Harshify-GCP at ${this.endpoint}: ${errorMessage(error)}`,
                 {cause: error},
             )
         }
@@ -66,7 +66,7 @@ export class GcpRestRuntimeClient implements GcpRuntimeClient {
     /**
      * Liveness probe against the runtime's own health endpoint.
      *
-     * Note the path is `/_floci-gcp/health`, not the `/_floci/health` that Floci
+     * Note the path is `/_floci-gcp/health`, not the `/_floci/health` that Harshify
      * core uses — `/` and `/_floci/health` both 404 on this runtime.
      */
     async health(): Promise<void> {
@@ -76,26 +76,26 @@ export class GcpRestRuntimeClient implements GcpRuntimeClient {
             res = await globalThis.fetch(url, {method: 'GET'})
         } catch (error) {
             throw new RuntimeUnavailableError(
-                `Cannot reach Floci-GCP at ${this.endpoint}: ${errorMessage(error)}`,
+                `Cannot reach Harshify-GCP at ${this.endpoint}: ${errorMessage(error)}`,
                 {cause: error},
             )
         }
         if (res.status >= 500) {
-            throw new RuntimeUnavailableError(`Floci-GCP at ${this.endpoint} returned HTTP ${res.status}`)
+            throw new RuntimeUnavailableError(`Harshify-GCP at ${this.endpoint} returned HTTP ${res.status}`)
         }
     }
 }
 
 export function gcpEndpoint(): string {
-    return process.env.FLOCI_GCP_ENDPOINT ?? process.env.FLOCI_GP_ENDPOINT ?? 'http://localhost:4588'
+    return process.env.HARSHIFY_GCP_ENDPOINT ?? process.env.HARSHIFY_GP_ENDPOINT ?? 'http://localhost:4588'
 }
 
 export function gcpProject(): string {
-    return process.env.FLOCI_GCP_PROJECT ?? 'floci-local'
+    return process.env.HARSHIFY_GCP_PROJECT ?? 'harshify-local'
 }
 
 export function gcpLocation(): string {
-    return process.env.FLOCI_GCP_LOCATION ?? 'us-central1'
+    return process.env.HARSHIFY_GCP_LOCATION ?? 'us-central1'
 }
 
 export const gcp = new GcpRestRuntimeClient()

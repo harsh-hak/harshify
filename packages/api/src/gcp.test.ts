@@ -19,13 +19,13 @@ function stubFetch(handler: (url: string, init?: RequestInit) => Response | Prom
 }
 
 function client(): GcpRestRuntimeClient {
-    return new GcpRestRuntimeClient(ENDPOINT, 'floci-local', 'us-central1')
+    return new GcpRestRuntimeClient(ENDPOINT, 'harshify-local', 'us-central1')
 }
 
 describe('environment defaults', () => {
     test('falls back to the documented local endpoints', () => {
         expect(gcpEndpoint()).toBe(ENDPOINT)
-        expect(gcpProject()).toBe('floci-local')
+        expect(gcpProject()).toBe('harshify-local')
         expect(gcpLocation()).toBe('us-central1')
     })
 })
@@ -122,6 +122,6 @@ describe('GcpRestRuntimeClient.health', () => {
         stubFetch(() => {
             throw Object.assign(new Error('connect ECONNREFUSED'), {code: 'ECONNREFUSED'})
         })
-        await expect(client().health()).rejects.toThrow(`Cannot reach Floci-GCP at ${ENDPOINT}`)
+        await expect(client().health()).rejects.toThrow(`Cannot reach Harshify-GCP at ${ENDPOINT}`)
     })
 })

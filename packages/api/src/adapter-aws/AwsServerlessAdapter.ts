@@ -116,7 +116,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Hello from Floci Cloud Explorer",
+      message: "Hello from Harshify Cloud Explorer",
       event
     })
   };

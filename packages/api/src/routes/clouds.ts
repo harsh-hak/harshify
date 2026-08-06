@@ -8,8 +8,8 @@ import {serviceForAccount} from '../cloudProxy'
 import {CloudProxyService} from '../service/CloudProxyService'
 
 // Header (and query-param fallback for direct links such as object downloads)
-// used by the frontend to scope every request to an AWS account.
-export const ACCOUNT_HEADER = 'x-floci-account-id'
+    // used by the frontend to scope every request to an AWS account.
+    export const ACCOUNT_HEADER = 'x-harshify-account-id'
 
 export function createCloudRoutes(injectedService?: CloudProxyService) {
     const app = new Hono()

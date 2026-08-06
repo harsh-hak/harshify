@@ -9,6 +9,9 @@ export class AuthenticationRequiredError extends Error {
 }
 
 export const apiEndpointKeys = {
+  system: {
+    network: "system.network.get",
+  },
   clouds: {
     list: "clouds.list",
     services: "clouds.services.list",
@@ -170,6 +173,15 @@ export const apiEndpointKeys = {
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "/api";
 
 export const endpointRegistry: EndpointRegistry = new Map([
+  // System
+  [
+    apiEndpointKeys.system.network,
+    {
+      path: "/system/network",
+      method: "GET",
+      telemetry: { service: "system" },
+    },
+  ],
   // Cloud Proxy
   [
     apiEndpointKeys.clouds.list,
@@ -596,7 +608,7 @@ export function createApiClient(
     endpointRegistry,
   );
 
-  // Account scope — every request carries the active AWS account so Floci can
+  // Account scope — every request carries the active AWS account so Harshify can
   // isolate resources per account (the API maps this header to its SDK creds).
   client.addRequestInterceptor((url, init) => {
     const headers = (init.headers ?? {}) as Record<string, string>;

@@ -1,4 +1,4 @@
-Guidance for AI coding agents working in the Floci UI repository.
+Guidance for AI coding agents working in the Harshify repository.
 
 This file defines repository-specific operating rules for autonomous or semi-autonomous
 coding agents. Follow these instructions unless a maintainer explicitly tells you otherwise.
@@ -11,17 +11,17 @@ coding agents. Follow these instructions unless a maintainer explicitly tells yo
 
 ## Project Overview
 
-Floci UI is the web console / DevTools for [Floci](https://floci.io), the local multi-cloud
+Harshify (formerly Floci UI) is the web console / DevTools for [Floci](https://floci.io), the local multi-cloud
 emulator. It is an AWS-Console-style UI for a locally running cloud runtime.
 
 It does **not** emulate anything itself. The frontend renders cloud resources; the API
 translates the UI's REST/JSON requests into cloud-SDK calls against the locally running
-Floci emulators (AWS, Azure, GCP).
+Harshify emulators (AWS, Azure, GCP).
 
 - pnpm workspace monorepo, two packages:
   - `packages/frontend` — React + Vite + TypeScript, served on port `4500`
   - `packages/api` — Bun + Hono + AWS SDK v3, served on port `4501`
-- Emulator endpoints it talks to: Floci core (AWS) `:4566`, Floci-AZ `:4577`, Floci-GCP `:4588`
+- Emulator endpoints it talks to: Harshify core (AWS) `:4566`, Harshify-AZ `:4577`, Harshify-GCP `:4588`
 
 ---
 
@@ -50,7 +50,7 @@ Critical rules:
 Browser (React/Vite :4500)
   → /api/*  (Hono, Bun :4501)
     → CloudProxyService → CloudAdapterRegistry → CloudServiceAdapter
-      → AWS SDK v3 (:4566) | Floci-AZ HTTP (:4577) | Floci-GCP HTTP (:4588)
+      → AWS SDK v3 (:4566) | Harshify-AZ HTTP (:4577) | Harshify-GCP HTTP (:4588)
 ```
 
 The repo is mid-migration from an older **AWS-only per-service** style to a newer
@@ -104,7 +104,7 @@ from the schema — most services need **no bespoke UI**.
     pnpm dev:api      # API only
     pnpm dev:web      # frontend only
 
-Requires a running Floci core (`:4566`) — see `README.md` / `docker compose` (use the
+Requires a running Harshify core (`:4566`) — see `README.md` / `docker compose` (use the
 `multicloud` profile to also start Azure + GCP).
 
 ### Checks (run all before finishing)
@@ -129,7 +129,7 @@ This is the canonical pattern (also referenced by the open service-coverage issu
    column to surface a `metadata.*` field.
 3. `src/adapter-<cloud>/<Cloud><Service>Adapter.ts implements CloudServiceAdapter` with a
    `.test.ts` alongside. Model: `src/adapter-aws/AwsStorageAdapter.ts`. AWS adapters use AWS
-   SDK v3 against `FLOCI_ENDPOINT`; Azure/GCP adapters take the shared runtime client
+   SDK v3 against `HARSHIFY_ENDPOINT`; Azure/GCP adapters take the shared runtime client
    (`AzureRuntimeClient` in `azure.ts`, `GcpRuntimeClient` in `gcp.ts`) — do not hand-roll fetch.
 4. Register it in `src/cloudProxy.ts`.
 
@@ -195,7 +195,7 @@ limited to human contributors.
 
 Releases are tag-driven. Docker images are never published on PR merge — only when a
 maintainer pushes an `X.Y.Z` tag, which triggers `.github/workflows/release.yml` to build
-and push the multi-arch `floci/floci-ui` image. Treat release workflows as critical infra.
+and push the multi-arch `harshify/harshify-ui` image. Treat release workflows as critical infra.
 
 ---
 
@@ -215,6 +215,6 @@ and push the multi-arch `floci/floci-ui` image. Treat release workflows as criti
 
 ## Human Handoff
 
-If behavior is unclear, prefer the real cloud-provider contract, then the existing Floci UI
+If behavior is unclear, prefer the real cloud-provider contract, then the existing Harshify
 convention, then the corresponding emulator's behavior. If a task would require broad
 architectural change, stop and surface the tradeoffs instead of refactoring blindly.

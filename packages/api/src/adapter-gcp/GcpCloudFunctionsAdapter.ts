@@ -10,9 +10,9 @@ import type {
 } from '../cloud-spi/types'
 
 /**
- * Talks to the Floci-GCP emulator's Cloud Functions service. The emulator
+ * Talks to the Harshify-GCP emulator's Cloud Functions service. The emulator
  * mirrors the public Cloud Functions Gen2 (v2) REST API — verified against
- * `floci/floci-gcp`:
+ * `harshify/harshify-gcp`:
  *
  *   list   GET    /v2/projects/{project}/locations/{location}/functions      -> {functions: [...]}
  *   get    GET    /v2/projects/{project}/locations/{location}/functions/{id} -> Function
@@ -21,7 +21,7 @@ import type {
  *
  * Notes from probing the emulator:
  *  - The `locations/-` wildcard is NOT supported (returns `{}`), so list is
- *    scoped to the configured location (FLOCI_GCP_LOCATION, default us-central1).
+ *    scoped to the configured location (HARSHIFY_GCP_LOCATION, default us-central1).
  *  - create/delete return a long-running Operation envelope with `done: true`;
  *    the function resource lives under `operation.response`.
  *  - A function's resource `name` is the fully-qualified path

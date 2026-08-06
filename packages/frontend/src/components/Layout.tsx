@@ -1,12 +1,13 @@
 import {NavLink, Outlet, useLocation} from 'react-router-dom'
 import {AlertTriangle, LayoutDashboard, Moon, Search, Sun} from 'lucide-react'
-import flociWhite from '@/assets/floci-white.svg'
-import flociBlack from '@/assets/floci-black.svg'
+import harshifyWhite from '@/assets/harshify-white.svg'
+import harshifyBlack from '@/assets/harshify-black.svg'
 import {useTheme} from '@/lib/useTheme'
 import {useQuery} from '@tanstack/react-query'
 import {getCloudStatus} from '@/api/cloudProxyClient'
 import {useCloudServicesQuery} from '@/api/queries/cloudQueries'
 import {AccountSwitcher} from '@/components/AccountSwitcher'
+import {GoLiveButton} from '@/components/GoLiveButton'
 import {serviceIcon} from '@/components/serviceIcons'
 import type {CloudProvider, CloudServiceDescriptor} from '@/types/cloud'
 
@@ -133,7 +134,7 @@ export function Layout() {
         <div className="app">
             <aside className="sidebar">
                 <div className="brand">
-                    <img className="brand-logo" src={theme === 'dark' ? flociWhite : flociBlack} alt="Floci"/>
+                    <img className="brand-logo" src={theme === 'dark' ? harshifyWhite : harshifyBlack} alt="Harshify"/>
                     <p>Local Cloud</p>
                 </div>
 
@@ -145,7 +146,11 @@ export function Layout() {
                     <CloudServiceNav/>
                 </nav>
 
-                <div className="sidebar-footer">Floci DevTools · Local</div>
+                <div className="sidebar-footer">
+                    <a href="https://harsh-hak.github.io/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none', opacity: 0.7, transition: 'opacity 0.2s'}} onMouseOver={(e) => e.currentTarget.style.opacity = '1'} onMouseOut={(e) => e.currentTarget.style.opacity = '0.7'}>
+                        Harshify DevTools · Local — Made by Harsh Kanojia
+                    </a>
+                </div>
             </aside>
 
             <div className="shell">
@@ -158,6 +163,7 @@ export function Layout() {
                     <button className="icon-btn" onClick={toggle} title="Toggle theme">
                         {theme === 'dark' ? <Sun size={14}/> : <Moon size={14}/>}
                     </button>
+                    <GoLiveButton/>
                     <div id="topbar-status" className="topbar-status"/>
                     <AccountSwitcher/>
                     <div className={`connection ${isConnected ? 'connected' : 'disconnected'}`}>

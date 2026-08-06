@@ -224,7 +224,7 @@ export interface ServerlessInvokeResult {
  * Lets a registered adapter correct its own advertised availability.
  *
  * Needed because "an adapter exists" and "the local runtime implements it" are
- * different facts: floci-az ships no /functions endpoint, so the Azure
+ * different facts: harshify-az ships no /functions endpoint, so the Azure
  * serverless adapter is registered but cannot serve a request. Declaring that
  * here keeps the sidebar, the console card and the explorer surface consistent
  * from one string.

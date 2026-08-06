@@ -5,17 +5,17 @@ import { EC2Client } from "@aws-sdk/client-ec2";
 import { RDSClient } from "@aws-sdk/client-rds";
 import { SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
 
-const endpoint = process.env.FLOCI_ENDPOINT;
+const endpoint = process.env.HARSHIFY_ENDPOINT;
 const region = process.env.AWS_REGION || "us-east-1";
 
-// Floci derives the AWS account from AWS_ACCESS_KEY_ID: a value that is exactly
+// Harshify derives the AWS account from AWS_ACCESS_KEY_ID: a value that is exactly
 // 12 digits is used verbatim as the account id, and resources are isolated per
 // account. Any other key (e.g. "test", "AKIA...") falls back to
-// FLOCI_DEFAULT_ACCOUNT_ID (000000000000). We lean on that contract to scope the
+// HARSHIFY_DEFAULT_ACCOUNT_ID (000000000000). We lean on that contract to scope the
 // console to an account: the access key *is* the account id and the secret can
-// be any non-empty string (Floci does not validate it).
-const DEFAULT_ACCOUNT_ID = process.env.FLOCI_DEFAULT_ACCOUNT_ID || "000000000000";
-const SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY || "floci";
+// be any non-empty string (Harshify does not validate it).
+const DEFAULT_ACCOUNT_ID = process.env.HARSHIFY_DEFAULT_ACCOUNT_ID || "000000000000";
+const SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY || "harshify";
 
 export function isAccountId(value: string | null | undefined): value is string {
   return typeof value === "string" && /^\d{12}$/.test(value);
@@ -78,7 +78,7 @@ export function awsClientsForAccount(accountId?: string | null): AwsClients {
 
 // Default-account singletons, kept for surfaces that are not yet account-aware:
 // the dedicated EC2, EKS, RDS and Secrets Manager routes. These ignore the
-// x-floci-account-id header and always serve the default account, so they do not
+// x-harshify-account-id header and always serve the default account, so they do not
 // follow the console's active account. The Cloud Explorer proxy resolves clients
 // per request via awsClientsForAccount() instead.
 export const awsClients = awsClientsForAccount(defaultAccountId());

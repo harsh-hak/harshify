@@ -243,13 +243,13 @@ export function EKSPage() {
             <EmptyState
               icon={Boxes}
               title="Cannot load clusters"
-              description="EKS did not respond from the Floci endpoint."
+              description="EKS did not respond from the Harshify endpoint."
             />
           ) : clusters.length === 0 ? (
             <EmptyState
               icon={Boxes}
               title="No EKS clusters"
-              description="No Kubernetes clusters were returned by Floci."
+              description="No Kubernetes clusters were returned by Harshify."
             />
           ) : (
             clusters.map((cluster) => (

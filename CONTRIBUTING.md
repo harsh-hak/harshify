@@ -1,6 +1,6 @@
-# Contributing to Floci UI
+# Contributing to Harshify
 
-Thank you for your interest in contributing! Floci UI is the web console / DevTools
+Thank you for your interest in contributing! Harshify (formerly Floci UI) is the web console / DevTools
 for the [Floci](https://floci.io) local cloud emulator. It is a community-driven
 project and all contributions are welcome.
 
@@ -9,7 +9,7 @@ project and all contributions are welcome.
 - **Bug reports** — open an issue with a minimal reproduction (steps, expected vs. actual)
 - **Feature requests** — open an issue describing the console feature or service page you need
 - **Pull requests** — bug fixes, new service UI, or UX improvements
-- **Service coverage** — wire a new Floci-backed service into the console
+- **Service coverage** — wire a new Harshify-backed service into the console
 
 ## Project Layout
 
@@ -35,8 +35,8 @@ Floci emulators. Never have the frontend reach a cloud endpoint directly.
 ### Install
 
 ```bash
-git clone https://github.com/floci-io/floci-ui.git
-cd floci-ui
+git clone https://github.com/harsh-hak/harshify.git
+cd harshify
 pnpm install
 ```
 
@@ -78,13 +78,13 @@ pnpm build         # production build
 
 ## Branching Model
 
-Floci UI uses a **tag-driven release model**. Docker images are never published on PR
+Harshify uses a **tag-driven release model**. Docker images are never published on PR
 merge — only when a maintainer pushes a version tag.
 
 | Branch / ref | Purpose | Docker published? |
 |---|---|---|
 | `main` | Integration branch — all PRs merge here. Treated as unstable. | No |
-| `X.Y.Z` tag | Signals a release. Triggers the multi-arch Docker publish pipeline. | Yes (`floci/floci-ui:x.y.z`, `floci/floci-ui:latest`) |
+| `X.Y.Z` tag | Signals a release. Triggers the multi-arch Docker publish pipeline. | Yes (`harshify/harshify-ui:x.y.z`, `harshify/harshify-ui:latest`) |
 
 ## Commit Message Format
 
@@ -201,7 +201,7 @@ git push origin 1.2.3
 
 The tag push triggers `.github/workflows/release.yml`, which builds the frontend bundle
 and the API binary, then packages and pushes a multi-arch (`linux/amd64,linux/arm64`)
-image as `floci/floci-ui:1.2.3` and `floci/floci-ui:latest`.
+image as `harshify/harshify-ui:1.2.3` and `harshify/harshify-ui:latest`.
 
 Publishing requires the `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` repository secrets.
 

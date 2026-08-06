@@ -1,6 +1,6 @@
 # Single-stage runtime image. Nothing is compiled here — the frontend bundle
 # and the API binary are built in CI (see .github/workflows/release.yml) and
-# copied in. Mirrors the floci-io/floci "native-package" approach.
+# copied in. Mirrors the harshify-io/harshify "native-package" approach.
 #
 # Expected build context layout:
 #   public/                       frontend production bundle (arch-independent)
