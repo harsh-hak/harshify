@@ -5,7 +5,7 @@
 
 <p align="center">
   <strong>Any Cloud. Locally.</strong><br />
-  A local-first, cloud-aware runtime console for the Floci local cloud emulator and compatible local runtimes.
+  A local-first, cloud-aware runtime console for the Harshify local cloud emulator and compatible local runtimes.
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@
   <img src="docs/images/harshify-console.png" alt="Harshify console" width="900" />
 </p>
 
-Harshify (formerly Floci UI) is the web console for the Floci ecosystem. The current app is centered on a unified `Cloud Explorer` and a cloud-aware `Console Home`. It renders only real data returned by local runtimes and explicit placeholders for work that is not wired yet.
+Harshify is the web console for the Harshify ecosystem. The current app is centered on a unified `Cloud Explorer` and a cloud-aware `Console Home`. It renders only real data returned by local runtimes and explicit placeholders for work that is not wired yet.
 
 No fake resources, no demo rows, and no mock operational data are shown in normal mode.
 
@@ -109,7 +109,7 @@ Current gaps:
 AWS only, through the unified shell.
 
 - EKS clusters can be listed and inspected.
-- Cluster metadata, node groups, and related details are surfaced when returned by Floci AWS Core.
+- Cluster metadata, node groups, and related details are surfaced when returned by Harshify AWS Core.
 
 Current gaps:
 
@@ -456,4 +456,4 @@ When adding new UI surface:
 
 ## License
 
-[MIT](LICENSE) — part of the [Floci](https://floci.io) ecosystem.
+[MIT](LICENSE) — part of the Harshify ecosystem.
