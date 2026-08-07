@@ -1,0 +1,44 @@
+{
+  "name": "@harshify/frontend",
+  "description": "Harshify web console — the React + Vite frontend for exploring local multi-cloud runtimes.",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --report-unused-disable-directives --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.101.2",
+    "@tanstack/react-query-devtools": "^5.101.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^1.22.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.18.1",
+    "tailwind-merge": "^3.6.0",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "autoprefixer": "^10.5.2",
+    "eslint": "^10.6.0",
+    "@eslint/js": "^10.0.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.7.0",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.1",
+    "vite": "^8.1.3"
+  }
+}

@@ -1,0 +1,100 @@
+services:
+  harshify-ui:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./packages/frontend/src:/app/src
+      - ./packages/frontend/index.html:/app/index.html
+      - ./packages/frontend/vite.config.ts:/app/vite.config.ts
+      - ./packages/frontend/tsconfig.json:/app/tsconfig.json
+      - ./packages/frontend/tsconfig.node.json:/app/tsconfig.node.json
+    ports:
+      - "4500:4500"
+    environment:
+      API_TARGET: http://harshify-api:4501
+      VITE_USE_POLLING: "true"
+    depends_on:
+      - harshify-api
+    networks:
+      - harshify_default
+
+  harshify-api:
+    build:
+      context: ./packages/api
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./packages/api/src:/app/src
+    ports:
+      - "4501:4501"
+    environment:
+      HARSHIFY_ENDPOINT: http://harshify:4566
+      HARSHIFY_AZURE_ENDPOINT: http://harshify-az:4577
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      HARSHIFY_GCP_ENDPOINT: http://harshify-gcp:4588
+      HARSHIFY_GCP_PROJECT: harshify-local
+      # LAN IP(s) the "Go Live" button advertises. Inside a container the API
+      # can only see bridge addresses, so set this to the host's LAN IP when
+      # running via Docker, e.g. in .env: HARSHIFY_LAN_ADDRESSES=192.168.1.50
+      HARSHIFY_LAN_ADDRESSES: ${HARSHIFY_LAN_ADDRESSES:-}
+      PORT: "4501"
+    depends_on:
+      - harshify
+    networks:
+      - harshify_default
+
+  harshify:
+    image: harshify/harshify:latest-compat
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./data:/app/data
+      - ./init/ready.d:/etc/floci/init/ready.d:ro
+      - ./init/files:/etc/floci/init/files:ro
+    environment:
+      FLOCI_STORAGE_MODE: persistent
+    networks:
+      harshify_default:
+        aliases:
+          - localhost.floci.io
+
+  # Multi-cloud emulators — enabled with the "multicloud" profile:
+  #   docker compose --profile multicloud up
+  harshify-az:
+    image: harshify/harshify-az
+    profiles: ["multicloud"]
+    ports:
+      - "4577:4577"
+    networks:
+      - harshify_default
+
+  harshify-gcp:
+    image: harshify/harshify-gcp
+    profiles: ["multicloud"]
+    ports:
+      - "4588:4588"
+    networks:
+      - harshify_default
+
+  harshify-seed:
+    image: harshify/harshify-gcp
+    profiles: ["multicloud"]
+    command: ["/bin/sh", "/etc/floci/init/seed-clouds.sh"]
+    volumes:
+      - ./init:/etc/floci/init:ro
+    environment:
+      HARSHIFY_AZURE_ENDPOINT: http://harshify-az:4577
+      HARSHIFY_AZURE_ACCOUNT_NAME: devstoreaccount1
+      HARSHIFY_GCP_ENDPOINT: http://harshify-gcp:4588
+      HARSHIFY_GCP_PROJECT: harshify-local
+    depends_on:
+      - harshify-az
+      - harshify-gcp
+    networks:
+      - harshify_default
+
+networks:
+  harshify_default:
+    name: harshify_default

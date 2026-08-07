@@ -1,0 +1,20 @@
+{
+  "name": "harshify-ui",
+  "version": "0.2.0",
+  "description": "Any Cloud. Locally. — the local cloud console for Harshify, an AWS-Console-style UI for your multi-cloud runtime.",
+  "private": true,
+  "packageManager": "pnpm@9.2.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "sh -c 'PORT=4501 pnpm dev:api & pnpm dev:web'",
+    "dev:web": "pnpm --filter @harshify/frontend dev",
+    "build": "pnpm --filter @harshify/frontend build",
+    "lint": "pnpm --filter @harshify/frontend lint",
+    "type-check": "pnpm --filter @harshify/api type-check && pnpm --filter @harshify/frontend type-check",
+    "test": "pnpm --filter @harshify/api test",
+    "dev:api": "sh -c 'PORT=${PORT:-4501} pnpm --filter @harshify/api dev'",
+    "start:api": "sh -c 'PORT=${PORT:-4501} pnpm --filter @harshify/api start'"
+  }
+}
