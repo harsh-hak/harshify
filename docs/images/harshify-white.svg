@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
-  <defs>
-    <style>
-      .wordmark { font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 700; font-size: 48px; fill: #ffffff; letter-spacing: -0.5px; }
-      .mark { fill: #ffffff; }
-    </style>
-  </defs>
-  <g transform="translate(0, 56)">
-    <!-- Mark: stylized H with cloud accent -->
-    <g class="mark" transform="translate(0, -8)">
-      <path d="M0 0h8v48h-8zM24 0h8v48h-8zM0 20h32v8H0z"/>
-      <ellipse cx="40" cy="-4" rx="14" ry="8" opacity="0.3"/>
-    </g>
-    <!-- Wordmark -->
-    <text class="wordmark" x="56" y="4">harshify</text>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80"><defs><style>.wordmark{font-family:&apos;Sora&apos;,&apos;Inter&apos;,-apple-system,BlinkMacSystemFont,sans-serif;font-weight:700;font-size:48px;fill:#fff;letter-spacing:-.5px}.mark{fill:#fff}</style></defs><g><g class="mark" transform="translate(0, 56) translate(0, -8)"><path d="M0 0h8v48h-8zM24 0h8v48h-8zM0 20h32v8H0z"/><ellipse cx="40" cy="-4" opacity=".3" rx="14" ry="8"/></g><text x="56" y="4" class="wordmark" transform="translate(0, 56)">harshify</text></g></svg>
